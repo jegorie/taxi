@@ -1,0 +1,37 @@
+.wrapper
+	position: relative
+	
+.input
+	font-size: 18px
+	border: none
+	outline: none
+	background: #eeeeee
+	padding: 10px
+	border: 1px solid #dddddd
+	border-radius: 5px
+	background: #eeeeee
+	transition: .3s
+	height: 40px
+	width: 460px
+	&:focus, &:hover
+		border: 1px solid #888888
+
+.warning
+	border-color: #DC0000
+	&:focus, &:hover
+		border-color: #DC0000
+
+.success
+	border-color: #04DC00
+	&:focus, &:hover
+		border-color: #04DC00
+
+.errorMsg
+	color: #DC0000
+	transition: .3s
+	position: absolute
+	right: 0
+	top: 0
+	z-index: -1
+	&_show
+		transform: translateY(-30px)
