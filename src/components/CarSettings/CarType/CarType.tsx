@@ -16,6 +16,7 @@ interface Props {
 }
 
 const CarType = ({ carType, selectedCarType, setCar }: Props) => {
+	// choose title and img by selectedCarType
 	const chooseCarType = {
 		eco: {
 			path: ECO_PATH,
@@ -31,9 +32,11 @@ const CarType = ({ carType, selectedCarType, setCar }: Props) => {
 		},
 	}
 
-	const chooseActiveCar = () =>
+	// change styles of selected car
+	const chooseActiveCarStyles = () =>
 		carType === selectedCarType ? styles.wrapper_active : ''
 
+	// set active carType or discard all
 	const chooseCarHandler = () => {
 		if (selectedCarType === carType) {
 			setCar(prevState => ({
@@ -52,7 +55,7 @@ const CarType = ({ carType, selectedCarType, setCar }: Props) => {
 		<div
 			className={styles.wrapper}
 			onClick={chooseCarHandler}
-			id={chooseActiveCar()}
+			id={chooseActiveCarStyles()}
 		>
 			<img src={chooseCarType[carType].path} alt='car type' />
 			<span>{chooseCarType[carType].title}</span>
