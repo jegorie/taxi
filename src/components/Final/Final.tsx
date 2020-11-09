@@ -2,8 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 
 import styles from './Final.module.sass'
 
-import Header from '../Header/Header'
-import { ICar, IRoadMap, IUser } from '../../App'
+import { ICar } from '../../App'
 import NavBtn from '../formsElements/NavBtn/NavBtn'
 import { State } from '../../interfaces'
 
@@ -16,6 +15,7 @@ interface Props {
 }
 
 const Final = ({ setStep, user, car, roadMap, resetAll }: Props) => {
+	// translate to russian to display chosen carType
 	const carType:State = {
 		eco: 'Эконом',
 		comfort: 'Комфорт',
@@ -23,14 +23,10 @@ const Final = ({ setStep, user, car, roadMap, resetAll }: Props) => {
 		nothing: '',
 	}
 
-	const prevStep = () => {
-		setStep(2)
-	}
+	const prevStep = ():void => setStep(2)
 
 	return (
-		<div className={styles.wrapper}>
-			<Header title='Подождите ответа оператора!' />
-			<div className={`${styles.settings} Settings__main-content`}>
+			<>
 				<div className={styles.final}>
 					<table className={styles.table}>
 						<tbody>
@@ -79,8 +75,7 @@ const Final = ({ setStep, user, car, roadMap, resetAll }: Props) => {
 						Очистить настройки
 					</button>
 				</div>
-			</div>
-		</div>
+			</>
 	)
 }
 

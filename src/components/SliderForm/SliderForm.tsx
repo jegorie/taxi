@@ -1,4 +1,10 @@
-import React, { CSSProperties, Dispatch, ReactNode, SetStateAction, useState } from 'react'
+import React, {
+	CSSProperties,
+	Dispatch,
+	ReactNode,
+	SetStateAction,
+	useState,
+} from 'react'
 import styles from './SliderForm.module.sass'
 
 interface Props {
@@ -6,30 +12,17 @@ interface Props {
 	step: number
 }
 
-interface IHeightOfCurrentSlide {
-	[key: number]: string
-}
-
-const heightOfCurrentSlide: IHeightOfCurrentSlide = {
-	0: '413px',
-	1: '303px',
-	2: '323px',
-	3: '390px',
-}
-
 const SliderForm = ({ children, step }: Props) => {
+	// calculate current height of chosen child el and set to slider
 	const [currentHeight, setCurrentHeight] = useState(413)
 
 	const changeCurrentSliderStyles: CSSProperties = {
 		transform: `translateX(-${step * 500}px)`,
-		height: heightOfCurrentSlide[step],
-	}
+		height: currentHeight + 'px',
+	} // show only chosen child el
 
 	return (
-		<form
-			className={styles.slider}
-			style={changeCurrentSliderStyles}
-		>
+		<form className={styles.slider} style={changeCurrentSliderStyles}>
 			{children(setCurrentHeight)}
 		</form>
 	)

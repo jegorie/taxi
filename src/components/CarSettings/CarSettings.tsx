@@ -5,7 +5,6 @@ import NavBtn from '../formsElements/NavBtn/NavBtn'
 import CarType from './CarType/CarType'
 
 import { ICar } from '../../App'
-import Header from '../Header/Header'
 
 
 interface Props {
@@ -15,20 +14,15 @@ interface Props {
 }
 
 const CarSettings = ({ car, setCar, setStep }: Props) => {
-	const prevStep = () => {
-		setStep(0)
-	}
+	// for nav buttons
+	const prevStep = (): void => setStep(0)
+	const nextStep = (): void => setStep(2)
 
-	const nextStep = () => {
-		setStep(2)
-	}
-
+	// disable next step if false
 	const disableNextStep:boolean = car.selectedCarType === 'nothing'
 
 	return (
-		<div>
-			<Header title='Выберете машину' />
-			<div className={`${styles.settings} Settings__main-content`}>
+			<>
 				<div className={styles.carTypes}>
 					<CarType
 						carType='eco'
@@ -58,8 +52,7 @@ const CarSettings = ({ car, setCar, setStep }: Props) => {
 						onClick={nextStep}
 					/>
 				</div>
-			</div>
-		</div>
+			</>
 	)
 }
 

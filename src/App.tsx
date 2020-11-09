@@ -1,5 +1,6 @@
-import React, { CSSProperties, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './App.module.sass'
+
 import CarSettings from './components/CarSettings/CarSettings'
 import Final from './components/Final/Final'
 import SettingsHOC from './components/formsElements/SettingsHOC/SettingsHOC'
@@ -7,6 +8,7 @@ import RoadMapSettings from './components/RoadMapSettings/RoadMapSettings'
 import SliderForm from './components/SliderForm/SliderForm'
 import Steps from './components/Steps/Steps'
 import UserSettings from './components/UserSettings/UserSettings'
+
 import { State } from './interfaces'
 
 export type ICarType = 'eco' | 'comfort' | 'buisness'
@@ -28,7 +30,7 @@ export interface IRoadMap {
 }
 
 const App = () => {
-	const [step, setStep] = useState(0)
+	const [step, setStep] = useState(0) // change current el from slider
 	const [user, setUser] = useState<State>({
 		firstName: '',
 		lastName: '',
@@ -65,30 +67,56 @@ const App = () => {
 				<SliderForm step={step}>
 					{setCurrentHeight => (
 						<>
-							<SettingsHOC title='Ваши данные'>
+							<SettingsHOC
+								title='Ваши данные'
+								step={step}
+								currentStep={0}
+								setCurrentHeight={setCurrentHeight}
+							>
 								<UserSettings
 									user={user}
 									setUser={setUser}
 									setStep={setStep}
 								/>
 							</SettingsHOC>
-							<CarSettings
-								car={car}
-								setCar={setCar}
-								setStep={setStep}
-							/>
-							<RoadMapSettings
-								roadMap={roadMap}
-								setRoadMap={setRoadMap}
-								setStep={setStep}
-							/>
-							<Final
-								setStep={setStep}
-								user={user}
-								car={car}
-								roadMap={roadMap}
-								resetAll={resetAll}
-							/>
+							<SettingsHOC
+								title='Выберете машину'
+								step={step}
+								currentStep={1}
+								setCurrentHeight={setCurrentHeight}
+							>
+								<CarSettings
+									car={car}
+									setCar={setCar}
+									setStep={setStep}
+								/>
+							</SettingsHOC>
+							<SettingsHOC
+								title='Куда едем?'
+								step={step}
+								currentStep={2}
+								setCurrentHeight={setCurrentHeight}
+							>
+								<RoadMapSettings
+									roadMap={roadMap}
+									setRoadMap={setRoadMap}
+									setStep={setStep}
+								/>
+							</SettingsHOC>
+							<SettingsHOC
+								title='Выберете машину'
+								step={step}
+								currentStep={3}
+								setCurrentHeight={setCurrentHeight}
+							>
+								<Final
+									setStep={setStep}
+									user={user}
+									car={car}
+									roadMap={roadMap}
+									resetAll={resetAll}
+								/>
+							</SettingsHOC>
 						</>
 					)}
 				</SliderForm>
